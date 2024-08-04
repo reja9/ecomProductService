@@ -6,5 +6,5 @@ import dev.reja.ecomProductService.ecomProductService.models.Cart;
 import java.util.List;
 
 public interface CartService {
-    public Cart createCart(List<CartItemDto>  cartItemDtoList);
+    public Cart createCart(String token, List<CartItemDto>  cartItemDtoList);
 }
