@@ -7,10 +7,12 @@ import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.annotations.Fetch;
 
+import java.io.Serializable;
+
 @Entity
 @Getter
 @Setter
-public class Product extends BaseModel {
+public class Product extends BaseModel implements Serializable {
 
     private String productName;
     private double price;

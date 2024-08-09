@@ -8,6 +8,7 @@ import dev.reja.ecomProductService.ecomProductService.models.Product;
 import dev.reja.ecomProductService.ecomProductService.repositories.CategoryRepository;
 import dev.reja.ecomProductService.ecomProductService.repositories.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -20,6 +21,8 @@ public class ProductServiceImpl implements ProductService {
     private ProductRepository productRepository;
     @Autowired
     private CategoryRepository categoryRepository;
+
+    @Cacheable(value = "products")
     @Override
     public List<Product> getAllproducts() {
         return productRepository.findAll();
@@ -46,6 +49,7 @@ public class ProductServiceImpl implements ProductService {
         return product;
     }
 
+    @Cacheable(value = "product", key = "#productId")
     @Override
     public Product getProductById(UUID productId) {
         return productRepository.findById(productId).orElseThrow(
